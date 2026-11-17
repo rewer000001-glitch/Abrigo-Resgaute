@@ -33,28 +33,12 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [preset, setPreset] = useState<number | null>(DEFAULT_AMOUNT);
   const [custom, setCustom] = useState("");
-const pickFromTier = (amount: number) => {
+
+  const pickFromTier = (amount: number) => {
     setPreset(amount);
     setCustom("");
     document.getElementById("como-doar-pix")?.scrollIntoView({ behavior: "smooth" });
   };
-
-   if (typeof window !== "undefined") {
-    window.addEventListener("click", (e) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest('a[href^="#"]');
-      if (anchor) {
-        const id = anchor.getAttribute("href")?.substring(1);
-        if (id) {
-          const el = document.getElementById(id);
-          if (el) {
-            e.preventDefault();
-            el.scrollIntoView({ behavior: "smooth" });
-          }
-        }
-      }
-    });
-  }
 
   return (
     <div id="topo" className="min-h-screen bg-background">
